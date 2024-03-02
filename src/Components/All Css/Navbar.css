@@ -1,0 +1,9 @@
+.Sidebar{
+    display: none;
+}
+
+@media screen and (min-width: 766px) {
+    .Sidebar{
+        display: block;
+    }  
+  } 
