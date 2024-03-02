@@ -18,7 +18,7 @@ export const createUser = createAsyncThunk(
       });
 
       const response = await axios.post(
-        "http://localhost:8000/portfolio/resister",
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/resister",
         formData,
         {
           withCredentials: true,
@@ -43,7 +43,7 @@ export const showUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/portfolio/AllUsers", 
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/AllUsers", 
         {
 
           withCredentials: "true",
@@ -65,7 +65,7 @@ export const DeleteUser = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8000/portfolio/DeleteUser/${id}`,{
+        `https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteUser/${id}`,{
 
         withCredentials: true,
         headers:{
@@ -86,7 +86,7 @@ export const LoginUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/portfolio/LoginUser", 
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/LoginUser", 
         data,
         {
           withCredentials: "true",
@@ -113,7 +113,7 @@ export const Logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/portfolio/LogoutUser", 
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/LogoutUser", 
         {
 
           withCredentials: "true",
@@ -137,7 +137,7 @@ export const LogedUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/portfolio/GetUserDetails", 
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/GetUserDetails", 
         {
 
           withCredentials: "true",

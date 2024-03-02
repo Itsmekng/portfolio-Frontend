@@ -14,7 +14,7 @@ export const CreateProjects = createAsyncThunk(
         }
       });
       const response = await axios.post(
-        "http://localhost:8000/portfolio/CreateProject",
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/CreateProject",
         formData,
         {withCredentials: "true",
           headers: {
@@ -36,7 +36,7 @@ export const ShowProject = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/portfolio/AllProject"
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/AllProject"
       );
     
       return response.data;
@@ -52,7 +52,7 @@ export const likeProject = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:8000/portfolio/LikeAndDislike/${id}`, 
+        `https://portfolio-backend-pt9r.onrender.com/portfolio/LikeAndDislike/${id}`, 
         {},
         {
           withCredentials: true, // Allow cookies to be sent
@@ -73,7 +73,7 @@ export const deleteProject = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/portfolio/DeleteProject/${id}`, 
+        `https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteProject/${id}`, 
         {},
         {
          withCredentials: true,

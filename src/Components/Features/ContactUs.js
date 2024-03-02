@@ -15,7 +15,7 @@ export const sendMessage = createAsyncThunk(
   async (messageData, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/portfolio/CreateMessage",
+        "https://portfolio-backend-pt9r.onrender.com/portfolio/CreateMessage",
         messageData
       );
       return ( response.data , SuccessAlert("Message Successfully Send") )
@@ -29,7 +29,7 @@ export const ShowMessage = createAsyncThunk(
   "data/showMessage",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:8000/portfolio/ReadMessage" , {
+      const response = await axios.get("https://portfolio-backend-pt9r.onrender.com/portfolio/ReadMessage" , {
 
       withCredentials: "true",
       headers:{
@@ -54,7 +54,7 @@ export const deleteProject = createAsyncThunk(
   'projects/deleteProject',
   async (projectId, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/portfolio/DeleteMessage/${projectId}` , { withCredentials: "true"});
+      const response = await axios.delete(`https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteMessage/${projectId}` , { withCredentials: "true"});
       if (response.status !== 200) {
         throw new Error('Failed to delete project');
       }
