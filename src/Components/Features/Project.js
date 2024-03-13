@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Url } from "../../Alert";
+
+const token = localStorage.getItem('token');
 
 export const CreateProjects = createAsyncThunk(
   "CreateProject",
@@ -14,12 +17,12 @@ export const CreateProjects = createAsyncThunk(
         }
       });
       const response = await axios.post(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/CreateProject",
+        `${Url}/portfolio/CreateProject`,
         formData,
         {withCredentials: "true",
           headers: {
             // Add any auth token here
-            authorization: "your token comes here",
+            authorization: token,
             "Content-Type": "multipart/form-data", // Ensure proper content type for file upload
           },
         }
@@ -36,7 +39,7 @@ export const ShowProject = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/AllProject"
+        `${Url}/portfolio/AllProject`
       );
     
       return response.data;
@@ -52,12 +55,12 @@ export const likeProject = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `https://portfolio-backend-pt9r.onrender.com/portfolio/LikeAndDislike/${id}`, 
+        `${Url}/portfolio/LikeAndDislike/${id}`, 
         {},
         {
           withCredentials: true, // Allow cookies to be sent
           headers: {
-            Authorization: 'Bearer YOUR_AUTH_TOKEN', // Replace 'YOUR_AUTH_TOKEN' with the actual token value
+            Authorization: token, // Replace 'YOUR_AUTH_TOKEN' with the actual token value
           },
         }
       );
@@ -73,12 +76,12 @@ export const deleteProject = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteProject/${id}`, 
+        `${Url}/portfolio/DeleteProject/${id}`, 
         {},
         {
          withCredentials: true,
           headers: {
-            Authorization: 'Bearer YOUR_AUTH_TOKEN', // Replace 'YOUR_AUTH_TOKEN' with the actual token value
+            Authorization: token, // Replace 'YOUR_AUTH_TOKEN' with the actual token value
           },
         }
       );

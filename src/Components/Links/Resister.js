@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { createUser } from "../Features/User";
+import { CreateUser } from "../Features/User";
 
 const signupSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -19,7 +19,6 @@ function Register() {
   
  const dispatch = useDispatch()
 
-  const navigate = useNavigate()
 
 
   const handleClick = (e) => {
@@ -31,8 +30,9 @@ function Register() {
     email: "",
     password: "",
     confirm_password: "",
-    avatar: null,
+  
   };
+
 
   const {
     values,
@@ -46,8 +46,8 @@ function Register() {
     initialValues,
     validationSchema: signupSchema,
     onSubmit: (values, action) => {
-     dispatch(createUser(values))
-      navigate("/")
+     dispatch(CreateUser(values))
+   
       action.resetForm();
     },
   });

@@ -49,12 +49,12 @@ function UserMessage() {
                             <h4 class="text-lg font-semibold text-center md:text-left text-zinc-800">
                               {message.name} / {message.email}
                             </h4>
-                            <p class="text-gray-700">{message.desc} </p>
+                            <p class="text-gray-700">{message._id} </p>
                             <p
                               className="text-base text-zinc-600 font-medium"
                               onClick={() => {
                                 dispatch(deleteProject(message._id));
-                                window.location.reload();
+                               
                               }}
                             >
                               delete

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { sendMessage } from "../Features/ContactUs";
-import { SuccessAlert } from "../../Alert";
+
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().min(2).required("Name is required"),

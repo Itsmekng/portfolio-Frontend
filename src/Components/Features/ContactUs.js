@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FailedAlert, SuccessAlert } from "../../Alert";
+import { FailedAlert, SuccessAlert, Url } from "../../Alert";
+
+const token = localStorage.getItem('token');
+
 
 // Define initial state
 const initialState = {
@@ -15,7 +18,7 @@ export const sendMessage = createAsyncThunk(
   async (messageData, thunkAPI) => {
     try {
       const response = await axios.post(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/CreateMessage",
+        `${Url}/portfolio/CreateMessage`,
         messageData
       );
       return ( response.data , SuccessAlert("Message Successfully Send") )
@@ -29,11 +32,11 @@ export const ShowMessage = createAsyncThunk(
   "data/showMessage",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("https://portfolio-backend-pt9r.onrender.com/portfolio/ReadMessage" , {
+      const response = await axios.get(`${Url}/portfolio/ReadMessage` , {
 
       withCredentials: "true",
       headers:{
-Authorization: "Token Here"
+Authorization: token,
       },
 
       });
@@ -51,19 +54,28 @@ Authorization: "Token Here"
 
 
 export const deleteProject = createAsyncThunk(
-  'projects/deleteProject',
-  async (projectId, { rejectWithValue }) => {
+  'deleteProject',
+  async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteMessage/${projectId}` , { withCredentials: "true"});
-      if (response.status !== 200) {
-        throw new Error('Failed to delete project');
-      }
-      return  projectId; // Return the ID of the deleted project
+
+      const response = await axios.delete(
+        `${Url}/portfolio/DeleteMessage/${id}`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: token, 
+           
+          },
+        }
+      );
+      SuccessAlert("Message Delete Successfull")
+      return response; // Return the ID of the deleted project
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
 
 
 

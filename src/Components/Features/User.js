@@ -1,41 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { FailedAlert, SuccessAlert } from "../../Alert";
+import { Url } from "../../Alert";
+
+const token = localStorage.getItem('token');
 
 
-// Create async action for user creation
-export const createUser = createAsyncThunk(
-  "createUser",
+export const CreateUser = createAsyncThunk(
+  "CreateUser",
   async (data, { rejectWithValue }) => {
     try {
-      const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        if (value instanceof File) {
-          formData.append(key, value, value.name); // Append file with its name
-        } else {
-          formData.append(key, value);
-        }
-      });
-
       const response = await axios.post(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/resister",
-        formData,
+        `${Url}/portfolio/resister`, 
+        data,
         {
-          withCredentials: true,
+          withCredentials: "true",
           headers: {
             // Add any auth token here
-            authorization: "your token comes here",
-            'Content-Type': 'multipart/form-data' // Ensure proper content type for file upload
+            authorization: "",
+          
           },
         }
       );
-      return  (response ,SuccessAlert("User create Successfully") );
+      SuccessAlert("User Successfully created")
+   
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+   
+      return  response.data
     } catch (error) {
-    
-      return  rejectWithValue(error , FailedAlert("Resister Failed , Try Again "));
+      FailedAlert("resister Failed , Try again later")
+      return rejectWithValue(error.response.data)   
     }
   }
 );
+
 
 // Read action to fetch all users
 export const showUser = createAsyncThunk(
@@ -43,12 +41,12 @@ export const showUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/AllUsers", 
+        `${Url}/portfolio/AllUsers`, 
         {
 
-          withCredentials: "true",
+        withCredentials: true,
           headers: {
-            Authorization: "", // Add your authorization token here if needed
+            Authorization: token, // Add your authorization token here if needed
           },
         }
       );
@@ -64,18 +62,22 @@ export const DeleteUser = createAsyncThunk(
   "DeleteUser",
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(
-        `https://portfolio-backend-pt9r.onrender.com/portfolio/DeleteUser/${id}`,{
+      
 
-        withCredentials: true,
-        headers:{
-          authorization: "Your Token Here"
-        }
+      const response = await axios.post(
+        `${Url}/portfolio/DeleteUser/${id}`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: token, // Include token in headers
+          },
         }
       );
-      return response;
+SuccessAlert("delete user successfully" )
+      return response.data; // Return response data
     } catch (error) {
-      return rejectWithValue(error , "errorrrrr !!!");
+      return rejectWithValue(error.message); // Return error message
     }
   }
 );
@@ -86,7 +88,7 @@ export const LoginUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/LoginUser", 
+        `${Url}/portfolio/LoginUser`, 
         data,
         {
           withCredentials: "true",
@@ -98,6 +100,9 @@ export const LoginUser = createAsyncThunk(
         }
       );
       SuccessAlert("Successfully Login")
+   
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+   
       return  response.data
     } catch (error) {
       FailedAlert("Login Failed , Try again later")
@@ -113,15 +118,16 @@ export const Logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/LogoutUser", 
+        `${Url}/portfolio/LogoutUser`, 
         {
 
           withCredentials: "true",
           headers: {
-            Authorization: "", // Add your authorization token here if needed
+            Authorization: token, // Add your authorization token here if needed
           },
         }
       );
+      localStorage.setItem('token', "");
       SuccessAlert("Successfully Logout")
       return response.data;
     } catch (error) {
@@ -137,12 +143,12 @@ export const LogedUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://portfolio-backend-pt9r.onrender.com/portfolio/GetUserDetails", 
+        `${Url}/portfolio/GetUserDetails`, 
         {
 
           withCredentials: "true",
           headers: {
-            Authorization: "", // Add your authorization token here if needed
+            Authorization: token, // Add your authorization token here if needed
           },
         }
       );
@@ -167,14 +173,14 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createUser.pending, (state) => {
+      .addCase(CreateUser.pending, (state) => {
         state.loading = true;
       })
-      .addCase(createUser.fulfilled, (state, action) => {
+      .addCase(CreateUser.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
       })
-      .addCase(createUser.rejected, (state, action) => {
+      .addCase(CreateUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

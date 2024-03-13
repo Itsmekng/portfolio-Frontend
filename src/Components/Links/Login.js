@@ -23,8 +23,6 @@ function Login() {
     onSubmit: (values, action) => {
      dispatch(LoginUser(values))
      navigate("/")
-      action.resetForm();
-
     },
   });
 
