@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Url } from "../../Alert";
+import { FailedAlert, SuccessAlert, Url } from "../../Alert";
 
 const token = localStorage.getItem('token');
 
@@ -64,8 +64,10 @@ export const likeProject = createAsyncThunk(
           },
         }
       );
+      SuccessAlert(response.data.liked)
       return response.data;
     } catch (error) {
+      FailedAlert(`Error : ${error} `)
       return rejectWithValue(error.response.data);
     }
   }

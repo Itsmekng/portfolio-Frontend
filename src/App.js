@@ -14,16 +14,16 @@ function App() {
 
 return (
  <Fragment>
-  <div className="bg-black">
+  <div className=" bg-white  dark:bg-black">
  <Navbar/>
  <HomePoster/>
- <hr className="border border-zinc-700" />
+ <hr className="border border-zinc-800 dark:border-zinc-700" />
 
 <Wellcome/>
-<hr className="border border-zinc-700" />
+<hr className="border border-zinc-800 dark:border-zinc-700" />
  <Project/>
  <NewLetter/>
- <hr className="border  border-gray-700" />
+ <hr className="border border-zinc-800  dark:border-gray-700" />
  <Footer/>
  </div>
  <BottomBar/>

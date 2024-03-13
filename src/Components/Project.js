@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { likeProject, ShowProject } from "./Features/Project";
 import { LogedUser } from "./Features/User";
 import { SuccessAlert } from "../Alert";
+import { Link } from "react-router-dom";
 
 function Project() {
 
   const dispatch = useDispatch();
+
 
  
   const { data } = useSelector(
@@ -30,11 +32,11 @@ function Project() {
   return (
     <>
       {data ? (
-        <section class="py-6 px-6 text-white">
+        <section class="py-6 px-6 text-black dark:text-white">
           <div class="container  mx-auto space-y-8">
             <div class="space-y-2 text-center">
               <h2 class="text-3xl font-bold">Projects</h2>
-              <p class="font-serif text-md text-zinc-300">
+              <p class="font-serif text-md text-black dark:text-zinc-300">
                 Here my some resent or old Projects
               </p>
             </div>
@@ -62,9 +64,9 @@ function Project() {
                           Visit
                         </a>
                       </div>
-                 { user ?  <div onClick={()=> dispatch(likeProject(project._id) , window.location.reload())} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
+                 { user ?  <Link to="/" onClick={()=> dispatch(likeProject(project._id))} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
                         <span id="Like" class="text-md text-black font-medium"  >Likes {project.likes.count}</span>
-                      </div> : <div onClick={() => { SuccessAlert("please login to like this Project") }} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
+                      </Link> : <div onClick={() => { SuccessAlert("please login to like this Project") }} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
                         <span id="Like" class="text-md text-black font-medium"  >Likes {project.likes.count}</span>
                       </div>  }    
                     </div>

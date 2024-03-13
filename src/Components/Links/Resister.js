@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { CreateUser } from "../Features/User";
+import { useNavigate } from "react-router-dom";
 
 const signupSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -19,7 +20,7 @@ function Register() {
   
  const dispatch = useDispatch()
 
-
+const navigate = useNavigate()
 
   const handleClick = (e) => {
     document.getElementById("upload").click();
@@ -30,7 +31,7 @@ function Register() {
     email: "",
     password: "",
     confirm_password: "",
-  
+    avatar: null,
   };
 
 
@@ -47,14 +48,16 @@ function Register() {
     validationSchema: signupSchema,
     onSubmit: (values, action) => {
      dispatch(CreateUser(values))
-   
+     navigate("/")
       action.resetForm();
     },
   });
 
+
   const handleAvatarChange = (event) => {
     setFieldValue("avatar", event.currentTarget.files[0]);
   };
+
 
   return (
     <div className="h-screen md:flex">

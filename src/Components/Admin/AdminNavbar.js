@@ -3,7 +3,7 @@ import React from 'react'
 function AdminNavbar() {
   return (
     <div>
-     
+      
 <nav class="flex justify-between px-7 py-4 items-center top-0 border border-zinc-200 border-solid ">
   <h6 class="text-xl text-gray-800 font-semibold">Admin Panel</h6>
   <div class="flex items-center">

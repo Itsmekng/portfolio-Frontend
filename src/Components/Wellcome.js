@@ -3,7 +3,7 @@ import MainImg from "../assets/IMG20240204162621.jpg";
 
 function Wellcome() {
   return (
-    <section className="border border-white border-solid bg-transparent m-8">
+    <section className="border border-black dark:border-white border-solid bg-transparent m-8">
       <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="max-w-lg">

@@ -17,6 +17,8 @@ import SearchUser from "./Components/Admin/SearchUser.js";
 import DeleteUser from "./Components/Admin/DeleteUser.js";
 import UserMessage from "./Components/Admin/UserMessage.js";
 import ProjectInfo from "./Components/Admin/ProjectInfo.js";
+import Dashboard from "./Components/Admin/Dashboard.js";
+import ApexChart from "./Components/Admin/Charts/ApexChart.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,7 +39,8 @@ root.render(
           <Route exact path="/DeleteUser" element={<DeleteUser />}></Route>
           <Route exact path="/UserMessage" element={<UserMessage />}></Route>
           <Route exact path="/ProjectInfo" element={<ProjectInfo />}></Route>
-        
+          <Route exact path="/Dashboard" element={<Dashboard />}></Route>
+          <Route exact path="/ApexChart" element={<ApexChart />}></Route>
         </Routes>
       </Router>
     </Provider>

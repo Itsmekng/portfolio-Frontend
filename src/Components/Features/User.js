@@ -6,34 +6,40 @@ import { Url } from "../../Alert";
 const token = localStorage.getItem('token');
 
 
+// Create async action for user creation
 export const CreateUser = createAsyncThunk(
   "CreateUser",
   async (data, { rejectWithValue }) => {
     try {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (value instanceof File) {
+          formData.append(key, value, value.name); // Append file with its name
+        } else {
+          formData.append(key, value);
+        }
+      });
+
       const response = await axios.post(
-        `${Url}/portfolio/resister`, 
-        data,
+        "http://localhost:8000/api/portfolio/resister",
+        formData,
         {
-          withCredentials: "true",
+          withCredentials: true,
           headers: {
             // Add any auth token here
-            authorization: "",
-          
+            authorization: "your token comes here",
+            'Content-Type': 'multipart/form-data' // Ensure proper content type for file upload
           },
         }
       );
-      SuccessAlert("User Successfully created")
-   
-        localStorage.setItem('token', JSON.stringify(response.data.token));
-   
-      return  response.data
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      return  (response ,SuccessAlert("User create Successfully") );
     } catch (error) {
-      FailedAlert("resister Failed , Try again later")
-      return rejectWithValue(error.response.data)   
+    
+      return  rejectWithValue(error , FailedAlert("Resister Failed , Try Again "));
     }
   }
 );
-
 
 // Read action to fetch all users
 export const showUser = createAsyncThunk(
@@ -160,6 +166,33 @@ export const LogedUser = createAsyncThunk(
 );
 
 
+export const Newletter = createAsyncThunk(
+  "Newletter",
+  async (email, { rejectWithValue }) => {
+    try {
+      
+
+      const response = await axios.post(
+        `${Url}/portfolio/Newletter/${email}`,
+        email,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: token, // Include token in headers
+          },
+        }
+      );
+SuccessAlert("Request Added")
+      return response.data; // Return response data
+    } catch (error) {
+      FailedAlert("please enter your email !!!")
+      
+      return rejectWithValue(error.message); // Return error message
+    }
+  }
+);
+
+
 
 
 // Define the user slice
@@ -244,6 +277,18 @@ export const userSlice = createSlice({
         state.users = action.payload;
       })
       .addCase(LogedUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(Newletter.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(Newletter.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(Newletter.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
