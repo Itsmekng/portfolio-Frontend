@@ -18,7 +18,7 @@ function Project() {
 
   
   const { user } = useSelector((state) => state.app.users);
-    console.log(user)
+
 
   useEffect(() => {
     dispatch(LogedUser())
@@ -40,40 +40,63 @@ function Project() {
                 Here my some resent or old Projects
               </p>
             </div>
-            <div class=" grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-2  ">
-              {data.map((project) => {
-                return (
-                  <div class="max-w-sm py-8 mx-4">
-                    <div class="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg">
-                      <img
-                        class="rounded-t-lg"
-                        src={project.projectImg.url}
-                        alt=""
-                      />
-                      <div class="py-6 px-8 rounded-lg bg-white">
-                        <h1 class="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900 hover:cursor-pointer">
-                          {project.name}
-                        </h1>
-                        <p class="text-gray-700 tracking-wide mb-8">
-                          {project.desc}
-                        </p>
-                        <a
-                          href={project.url}
-                          class="mt-6 py-2 px-4 bg-yellow-400 text-gray-800 font-bold rounded-lg shadow-md hover:shadow-lg transition duration-300"
-                        >
-                          Visit
-                        </a>
-                      </div>
-                 { user ?  <Link to="/" onClick={()=> dispatch(likeProject(project._id))} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
-                        <span id="Like" class="text-md text-black font-medium"  >Likes {project.likes.count}</span>
-                      </Link> : <div onClick={() => { SuccessAlert("please login to like this Project") }} class="absolute top-2 right-2 px-2 bg-white rounded-lg">
-                        <span id="Like" class="text-md text-black font-medium"  >Likes {project.likes.count}</span>
-                      </div>  }    
-                    </div>
-                  </div>
-                );
-              })}{" "}
-            </div>
+          
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-10 md:px-20">
+
+
+
+{ data.map((project) => {    
+
+ return ( <>
+ 
+ <div class="border border-zinc-500 border-solid max-w-md mx-auto rounded-md overflow-hidden shadow-md hover:shadow-lg">
+    <div class="relative">
+        <img class="w-full" src={project.projectImg.url} alt="Product Image"/>
+        <div class="absolute top-0 right-0 bg-red-500  text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Likes {project.likes.count}
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-lg font-medium mb-2">{project.name}</h3>
+        <p class="text-gray-300 text-sm mb-4">{project.desc}</p>
+        <div class="flex items-center justify-between">
+           
+            <a href={project.url} class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+        Visit
+      </a>
+        </div>
+    </div>
+</div>
+   
+ 
+ 
+ </>)
+
+})  }
+
+         
+
+
+
+   
+
+
+  
+  
+
+   
+
+
+</div>
+
+
+
+
+
+
+
+
           </div>
         </section>
       ) : null}
