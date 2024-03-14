@@ -21,6 +21,7 @@ function Login() {
     initialValues,
     validationSchema: LoginSchema,
     onSubmit: (values, action) => {
+      
      dispatch(LoginUser(values))
      navigate("/")
     },
