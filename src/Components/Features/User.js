@@ -21,7 +21,7 @@ export const CreateUser = createAsyncThunk(
       });
 
       const response = await axios.post(
-        "http://localhost:8000/api/portfolio/resister",
+        `${Url}/portfolio/resister`,
         formData,
         {
           withCredentials: true,
