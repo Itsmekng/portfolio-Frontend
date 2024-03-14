@@ -11,4 +11,4 @@ window.location.reload()
     }
 
 
-    export const Url = "http://localhost:8000/api";
+    export const Url = "https://portfolio-backend-b7bs.onrender.com/api";
