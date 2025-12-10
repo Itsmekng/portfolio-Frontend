@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://portfolio-backend-b7bs.onrender.com",
+  "proxy": "http://65.1.110.158/portfolio_backend/api",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^5.17.0",
