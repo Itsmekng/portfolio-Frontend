@@ -25,12 +25,12 @@ useEffect(() => {
     <div>
  
     <AdminNavbar/>
-    <div classNameName='flex'>  
+    <div className='flex'>  
      
      
       <Sidebar/>
     
-    <div classNameName='w-full'>
+    <div className='w-full'>
    
    { users  ? users.map((user) => {  
 
@@ -56,7 +56,7 @@ useEffect(() => {
 
  
 
-   })  : <div classNameName=' flex justify-center my-24 text-3xl font-semibold' >You are not authorised to access this source <Link to="/" classNameName='mx-4 text-blue-500' > Click Here to Move Back </Link> </div> }
+   })  : <div className=' flex justify-center my-24 text-3xl font-semibold' >You are not authorised to access this source <Link to="/" className='mx-4 text-blue-500' > Click Here to Move Back </Link> </div> }
 
 
     

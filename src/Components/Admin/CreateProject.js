@@ -53,7 +53,7 @@ function CreateProject() {
        <div>
  
  <AdminNavbar/>
- <div classNameName='flex'>  
+ <div className='flex'>  
   
   
    <Sidebar/>
@@ -79,7 +79,7 @@ function CreateProject() {
 			<label for="desc" className="text-sm">Description (100 word)</label>
 			<textarea id="message" name='desc' rows="3" className="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} ></textarea>
 		</div>
-    <input name="projectImg" id="Upload" type="file" classNameName='hidden' onChange={ProjectData} />
+    <input name="projectImg" id="Upload" type="file" className='hidden' onChange={ProjectData} />
     <div className=" p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900" onClick={() =>{ document.getElementById("Upload").click() }} >Project Image</div>
 		<button type="submit" className="w-full p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900">Create Project</button>
 	</form>

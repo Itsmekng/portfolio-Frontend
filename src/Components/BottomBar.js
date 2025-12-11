@@ -11,10 +11,9 @@ export default function BottomBar() {
 		  const { user } = useSelector((state) => state.app.users);
 
 function LogoutUser(){
-    
- dispatch(Logout())
+//  dispatch(await Logout())
+localStorage.setItem('token', "")
  window.location.reload() 
-
 }
 
   return (

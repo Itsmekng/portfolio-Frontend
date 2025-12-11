@@ -21,16 +21,7 @@ export const CreateUser = createAsyncThunk(
       });
 
       const response = await axios.post(
-        `${Url}/portfolio/resister`,
-        formData,
-        {
-          withCredentials: true,
-          headers: {
-            // Add any auth token here
-            authorization: "your token comes here",
-            'Content-Type': 'multipart/form-data' // Ensure proper content type for file upload
-          },
-        }
+        `${Url}/portfolio/resister`,formData,
       );
       localStorage.setItem('token', JSON.stringify(response.data.token));
       return  (response ,SuccessAlert("User create Successfully") );
@@ -49,10 +40,8 @@ export const showUser = createAsyncThunk(
       const response = await axios.get(
         `${Url}/portfolio/AllUsers`, 
         {
-
-        withCredentials: true,
           headers: {
-            Authorization: token, // Add your authorization token here if needed
+            Authorization: localStorage.getItem('token'), // Add your authorization token here if needed
           },
         }
       );
@@ -68,13 +57,10 @@ export const DeleteUser = createAsyncThunk(
   "DeleteUser",
   async (id, { rejectWithValue }) => {
     try {
-      
-
       const response = await axios.post(
         `${Url}/portfolio/DeleteUser/${id}`,
         {},
         {
-          withCredentials: true,
           headers: {
             Authorization: token, // Include token in headers
           },
@@ -94,22 +80,11 @@ export const LoginUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${Url}/portfolio/LoginUser`, 
-        data,
-        {
-          withCredentials: "true",
-          headers: {
-            // Add any auth token here
-            authorization: "",
-          
-          },
-        }
+        `${Url}/portfolio/LoginUser` ,data
       );
-      SuccessAlert("Successfully Login")
-   
-        localStorage.setItem('token', JSON.stringify(response.data.token));
-   
-      return  response.data
+
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      return  response.data;
     } catch (error) {
       FailedAlert("Login Failed , Try again later")
       return rejectWithValue(error.response.data)   
@@ -119,29 +94,28 @@ export const LoginUser = createAsyncThunk(
 
 
 
-export const Logout = createAsyncThunk(
-  "Logout",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        `${Url}/portfolio/LogoutUser`, 
-        {
 
-          withCredentials: "true",
-          headers: {
-            Authorization: token, // Add your authorization token here if needed
-          },
-        }
-      );
-      localStorage.setItem('token', "");
-      SuccessAlert("Successfully Logout")
-      return response.data;
-    } catch (error) {
-      FailedAlert("Some Error Occure , try again later")
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+// export const Logout = createAsyncThunk(
+//   "Logout",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.get(
+//         `${Url}/portfolio/LogoutUser`, 
+//         {
+//           headers: {
+//             Authorization: localStorage.getItem('token'), // Add your authorization token here if needed
+//           },
+//         }
+//       );
+//       localStorage.setItem('token', "")
+//       SuccessAlert("Successfully Logout")
+//       return response.data;
+//     } catch (error) {
+//       FailedAlert("Some Error Occure , try again later")
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
 
 
 export const LogedUser = createAsyncThunk(
@@ -151,10 +125,8 @@ export const LogedUser = createAsyncThunk(
       const response = await axios.get(
         `${Url}/portfolio/GetUserDetails`, 
         {
-
-          withCredentials: "true",
           headers: {
-            Authorization: token, // Add your authorization token here if needed
+            Authorization: localStorage.getItem('token'), // Add your authorization token here if needed
           },
         }
       );
@@ -256,18 +228,18 @@ export const userSlice = createSlice({
         state.error = action.payload;
       })
 
-      .addCase(Logout.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(Logout.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = action.payload;
-      })
-      .addCase(Logout.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      // .addCase(Logout.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(Logout.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.users = action.payload;
+      // })
+      // .addCase(Logout.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.payload;
       
-      })
+      // })
 
       .addCase(LogedUser.pending, (state) => {
         state.loading = true;

@@ -34,9 +34,8 @@ export const ShowMessage = createAsyncThunk(
     try {
       const response = await axios.get(`${Url}/portfolio/ReadMessage` , {
 
-      withCredentials: "true",
       headers:{
-Authorization: token,
+        Authorization: token,
       },
 
       });
@@ -61,7 +60,6 @@ export const deleteProject = createAsyncThunk(
       const response = await axios.delete(
         `${Url}/portfolio/DeleteMessage/${id}`,
         {
-          withCredentials: true,
           headers: {
             Authorization: token, 
            

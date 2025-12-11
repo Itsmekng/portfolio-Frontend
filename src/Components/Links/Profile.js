@@ -9,8 +9,8 @@ import CoverImg from "../../assets/7247.jpg"
 function Profile() {
   const dispatch  =  useDispatch()
   function LogoutUser(){
-      
-   dispatch(Logout())
+      localStorage.setItem('token', "")
+//    dispatch(Logout())
    window.location.reload() 
   
   }
@@ -32,7 +32,7 @@ function Profile() {
 
   
         
-        <div  classNameName='bg-black w-full h-screen '>
+        <div  className='bg-black w-full h-screen '>
 
 
 { user ? 
@@ -70,9 +70,7 @@ function Profile() {
                     </div>
                 </div>  
               
-            </div> : <div classNameName='text-zinc-300 flex justify-center pt-[25vh]'> Please Login <Link to="/Login" classNameName='text-blue-500 ml-2'> Nevigate to login Page</Link></div>}
-
-
+            </div> : <div className='text-zinc-300 flex justify-center pt-[25vh]'> Please Login <Link to="/Login" className='text-blue-500 ml-2'> Nevigate to login Page</Link></div>}
 
         </div>
   
