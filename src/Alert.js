@@ -11,4 +11,4 @@ window.location.reload()
     }
 
 
-    export const Url = "http://65.1.110.158/portfolio_backend/api";
+    export const Url = "https://portfolio-backend-nrm4.onrender.com/api";

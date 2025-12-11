@@ -53,35 +53,35 @@ function CreateProject() {
        <div>
  
  <AdminNavbar/>
- <div className='flex'>  
+ <div classNameName='flex'>  
   
   
    <Sidebar/>
 
-   <div class="w-screen h-full py-12 grid max-w-screen-xl grid-cols-1 gap-8   mx-auto rounded-lg md:grid-cols-2 px-12 bg-zinc-100 text-zinc-900">
-	<div class="flex flex-col ">
-		<div class="space-y-2">
-			<h2 class="text-3xl font-bold leadi lg:text-4xl">Create Project Here</h2>
-			<div class="dark:text-gray-400">Vivamus in nisl metus? Phasellus.</div>
+   <div className="w-screen h-full py-12 grid max-w-screen-xl grid-cols-1 gap-8   mx-auto rounded-lg md:grid-cols-2 px-12 bg-zinc-100 text-zinc-900">
+	<div className="flex flex-col ">
+		<div className="space-y-2">
+			<h2 className="text-3xl font-bold leadi lg:text-4xl">Create Project Here</h2>
+			<div className="dark:text-gray-400">Vivamus in nisl metus? Phasellus.</div>
 		</div>
-		<img src="https://t3.ftcdn.net/jpg/04/51/39/92/360_F_451399234_4ue5KX3bU2XKlgqFCJPd3Tsgv6cuLDLM.jpg" alt="" class="p-2 pt-8 h-[55vh] "/>
+		<img src="https://t3.ftcdn.net/jpg/04/51/39/92/360_F_451399234_4ue5KX3bU2XKlgqFCJPd3Tsgv6cuLDLM.jpg" alt="" className="p-2 pt-8 h-[55vh] "/>
 	</div>
-	<form onSubmit={handleSubmit} novalidate="" class=" py-20 space-y-6">
+	<form onSubmit={handleSubmit} novalidate="" className=" py-20 space-y-6">
 		<div>
-			<label for="name" class="text-sm">Project Name</label>
-			<input id="name" name='name' type="text" placeholder="" class="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} />
+			<label for="name" className="text-sm">Project Name</label>
+			<input id="name" name='name' type="text" placeholder="" className="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} />
 		</div>
 		<div>
-			<label for="url" class="text-sm">Url</label>
-			<input id="email" name='url' type="text" class="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} />
+			<label for="url" className="text-sm">Url</label>
+			<input id="email" name='url' type="text" className="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} />
 		</div>
 		<div>
-			<label for="desc" class="text-sm">Description (100 word)</label>
-			<textarea id="message" name='desc' rows="3" class="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} ></textarea>
+			<label for="desc" className="text-sm">Description (100 word)</label>
+			<textarea id="message" name='desc' rows="3" className="border border-solid border-black w-full p-3 rounded bg-zinc-100" onChange={ProjectData} ></textarea>
 		</div>
-    <input name="projectImg" id="Upload" type="file" className='hidden' onChange={ProjectData} />
-    <div class=" p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900" onClick={() =>{ document.getElementById("Upload").click() }} >Project Image</div>
-		<button type="submit" class="w-full p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900">Create Project</button>
+    <input name="projectImg" id="Upload" type="file" classNameName='hidden' onChange={ProjectData} />
+    <div className=" p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900" onClick={() =>{ document.getElementById("Upload").click() }} >Project Image</div>
+		<button type="submit" className="w-full p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900">Create Project</button>
 	</form>
 </div>
 

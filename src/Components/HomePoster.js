@@ -28,17 +28,17 @@ function HomePoster() {
   return (
     <div className=" pt-52 p-2 rounded-sm md:pt-0 md:p-0   h-screen z-9 relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
     <div className="hidden lg:block w-full h-64 lg:w-1/2 p-16 lg:h-[85vh] border border-black  dark:border-white border-solid">
-      <div class="clock">
-        <div class="hour">
-          <div class="hr" id="hr"></div>
+      <div className="clock">
+        <div className="hour">
+          <div className="hr" id="hr"></div>
         </div>
 
-        <div class="min">
-          <div class="mn" id="mn"></div>
+        <div className="min">
+          <div className="mn" id="mn"></div>
         </div>
 
-        <div class="sec">
-          <div class="sc" id="sc"></div>
+        <div className="sec">
+          <div className="sc" id="sc"></div>
         </div>
       </div>
     </div>
