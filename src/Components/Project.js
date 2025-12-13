@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeProject, ShowProject } from "./Features/Project";
 import { LogedUser } from "./Features/User";
-import { SuccessAlert } from "../Alert";
-import { Link } from "react-router-dom";
 
 function Project() {
 

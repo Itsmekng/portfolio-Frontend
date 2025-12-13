@@ -58,7 +58,6 @@ export const likeProject = createAsyncThunk(
         `${Url}/portfolio/LikeAndDislike/${id}`, 
         {},
         {
-          withCredentials: true, // Allow cookies to be sent
           headers: {
             Authorization: token, // Replace 'YOUR_AUTH_TOKEN' with the actual token value
           },

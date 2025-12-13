@@ -69,7 +69,7 @@ function Navbar() {
              
               {user ? (
                 <li className="block p-1 font-sans text-sm antialiased font-semibold dark:font-normal leading-normal text-blue-gray-900">
-                  <a download={Resume} href="/" className="flex items-center">
+                  <a href="https://drive.google.com/uc?export=download&id=1mMIRspivKLfJPK2qD0KkN7c7Hdqv9ikr" className="flex items-center">
                     Resume
                   </a>
                 </li>

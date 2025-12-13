@@ -11,16 +11,16 @@ function Wellcome() {
               About Me
             </h2>
             <p className="mt-4 text-gray-600 text-lg">
-              I'm a MERN stack developer, adept in MongoDB, Express.js, React,
-              and Node.js. Expertise in backend with Node.js, Express.js,
-              frontend with React, and MongoDB data management. Skilled in
-              full-stack development, passionate about staying current with web
-              trends for high-quality solutions.
+              I am a passionate developer with strong problem-solving
+              skills and hands-on experience in software development.
+              With a solid background in ColdFusion and a growing
+              focus on MERN technologies, I look forward to
+              contributing effectively and am available to take
+              responsibility.
             </p>
             <div className="mt-8">
-              <a href="/" className="text-blue-500 hover:text-blue-600 font-medium">
-                Follow Me On Social Media
-             
+              <a href="https://www.linkedin.com/in/aman-sahni-864265237/" className="text-blue-500 hover:text-blue-600 font-medium">
+                Connect with me on LinkedIn
               </a>
             </div>
           </div>

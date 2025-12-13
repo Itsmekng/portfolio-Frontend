@@ -148,7 +148,6 @@ export const Newletter = createAsyncThunk(
         `${Url}/portfolio/Newletter/${email}`,
         email,
         {
-          withCredentials: true,
           headers: {
             Authorization: token, // Include token in headers
           },
